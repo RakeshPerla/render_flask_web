@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submission Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Submission Results</h1>
+            <a href="{{ url_for('dashboard') }}" class="btn">Back to Dashboard</a>
+        </div>
+        
+        {% for result in results %}
+        <div class="result-box">
+            <h2>Assignment: {{ result.question }}</h2>
+            <p class="score-grade">Similarity Score: {{ result.similarity_score }}</p>
+            <p class="score-grade">Final Grade: {{ result.grade }}</p>
+            <p class="score-grade"><strong>Marks: {{ result.numerical_score }}/5</strong></p>
+
+            <h3>Student's Answer (Excerpt)</h3>
+            <pre>{{ result.student_excerpt }}</pre>
+
+            <h3>Correct Answer (Excerpt)</h3>
+            <pre>{{ result.correct_excerpt }}</pre>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
